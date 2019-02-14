@@ -17,10 +17,12 @@ package com.lazydev.jme.svg;
 
 import com.jme3.asset.AssetProcessor;
 import com.jme3.asset.TextureKey;
+import com.jme3.asset.cache.AssetCache;
+import com.jme3.asset.cache.SimpleAssetCache;
 import com.jme3.texture.TextureProcessor;
 
 public class SVGTextureKey extends TextureKey {
-    public int width, hight;
+    public int width, height;
     /**
      * @param name "Path/to/image.svg"
      * @param width Desired width
@@ -29,10 +31,43 @@ public class SVGTextureKey extends TextureKey {
     public SVGTextureKey(String name, int width, int height) {
         super(name);
         this.width = width;
-        this.hight = height;
+        this.height = height;
     }
     @Override
     public Class<? extends AssetProcessor> getProcessorType(){
         return TextureProcessor.class;
+    }
+    @Override
+    public Class<? extends AssetCache> getCacheType(){
+        return SimpleAssetCache.class;
+    }
+    @Override
+    public boolean equals(Object obj) { //Without this, you have scaling issues if you grab the same object twice.
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TextureKey other = (TextureKey) obj;
+        if (!super.equals(obj)) {
+            return false;
+        }
+        if (this.isGenerateMips() != other.isGenerateMips()) {
+            return false;
+        }
+        if (this.isFlipY() != other.isFlipY()) {
+            return false;
+        }
+        if (this.getAnisotropy() != other.getAnisotropy()) {
+            return false;
+        }
+        if (this.getTextureTypeHint() != other.getTextureTypeHint()) {
+            return false;
+        }
+        if (this.width != ((SVGTextureKey)other).width || this.height != ((SVGTextureKey)other).height) {
+            return false;
+        }
+        return true;
     }
 }

@@ -42,21 +42,12 @@ public interface SVGUtil {
      * @param repeat Honestly, I'm not completely sure... I copied that from Lemur...
      * @return 
      */
-    public static Texture loadSVGTexture(AssetManager assets, String path, int width, int height, boolean repeat) {
+    public static Texture loadSVGTexture(AssetManager assets, String path, int width, int height) {
         SVGTextureKey key = new SVGTextureKey(path, width, height);
         Texture t = assets.loadAsset(key);
         if( t == null ) {
             throw new RuntimeException("Error loading SVG texture:" + path);
         }
-
-        if( repeat ) {
-            t.setWrap(Texture.WrapMode.Repeat);
-        } else {
-            // JME has deprecated Clamp and defaults to EdgeClamp.
-            // I think the WrapMode.EdgeClamp javadoc is totally bonkers, though.
-            t.setWrap(Texture.WrapMode.EdgeClamp);
-        }
-
         return t;
     }
     /**

@@ -58,7 +58,7 @@ import com.simsilica.lemur.VAlignment;
  *  then it will not affect the preferred size of the overall
  *  component stack.
  *
- *  @author    Paul Speed
+ *  @author    Paul Speed (Edited by Indigo Amann)
  */
 public class SVGIconComponent extends AbstractGuiComponent
                            implements Cloneable, ColoredComponent {
@@ -94,7 +94,7 @@ public class SVGIconComponent extends AbstractGuiComponent
                           float xMargin, float yMargin, float zOffset,
                           boolean lit ) {
         this.imagePath = imagePath;
-        this.image = SVGUtil.loadSVGTexture(assets, imagePath, sizeX, sizeY, false);
+        this.image = SVGUtil.loadSVGTexture(assets, imagePath, sizeX, sizeY);
         this.iconSize = new Vector2f(sizeX, sizeY);
         this.iconScale = new Vector2f(1, 1);
         this.xMargin = xMargin;

@@ -30,7 +30,7 @@ public class SVGTextureLoader implements AssetLoader {
         try {
             if (!(assetInfo.getKey() instanceof SVGTextureKey)) throw new IllegalArgumentException("SVGTextureLoader requies a SVGTextureKey as the AssetInfo key.");
             SVGTextureKey texKey = (SVGTextureKey) assetInfo.getKey();
-            return SVGUtil.instance().createJMEImage(stream, texKey.width, texKey.hight, texKey);
+            return SVGUtil.instance().createJMEImage(stream, texKey.width, texKey.height, texKey);
             //return new Texture2D(image);
         } catch (Exception ex) {
             Logger.getLogger(SVGTextureLoader.class.getName()).log(Level.SEVERE, null, ex);
