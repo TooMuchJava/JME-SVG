@@ -6,4 +6,4 @@
 
 All this lets you do is load .svg(Scaled Vector Graphics) files into JMonkeyEngine as textures at any resolution you want.
 
-## Note that i am no longer using JME and will not uptade this.
+## Note that i am no longer using JME and will not update this.
